@@ -52,6 +52,8 @@ CORE.SERV.COMPILER.gnu = generic
 -DEBC.gnu = -g
 
 COMPILER.lnx.gnu = g++ -D__int64="long long" -D__int32="int" $(if $(IA_is_ia32),-m32,-m64)
+# add by harpdaal
+COMPILER.lnx.gnu += -I$(HDFSDIR.include) -I$(MEMKINDDIR.include) -O3 -Wfatal-errors
 
 link.dynamic.lnx.gnu = g++ $(if $(IA_is_ia32),-m32,-m64)
 
