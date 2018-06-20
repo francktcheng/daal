@@ -29,7 +29,11 @@
 #include <stdio.h>
 #include <assert.h>
 #include <random>
+
+#ifdef USE_OMP
 #include <omp.h>
+#endif
+
 #include <stdlib.h>     
 #include <string>
 #include <vector>

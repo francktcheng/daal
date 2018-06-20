@@ -55,6 +55,10 @@ CORE.SERV.COMPILER.clang = generic
 COMPILER.lnx.clang = clang++ -D__int64="long long" -D__int32="int" $(if $(IA_is_ia32),-m32,-m64) -fgnu-runtime -Wno-inconsistent-missing-override -stdlib=libstdc++ -nostdinc++
 COMPILER.mac.clang = clang++ -D__int64="long long" -D__int32="int" $(if $(IA_is_ia32),-m32,-m64) -fgnu-runtime -stdlib=libstdc++ -mmacosx-version-min=10.11
 
+# add by harpdaal
+COMPILER.lnx.clang += -I$(HDFSDIR.include) -I$(MEMKINDDIR.include) -O3 -stdlib=libc++
+COMPILER.mac.clang += -I$(HDFSDIR.include) -I$(MEMKINDDIR.include) -O3 -stdlib=libc++
+
 
 link.dynamic.lnx.clang = clang++ $(if $(IA_is_ia32),-m32,-m64)
 link.dynamic.mac.clang = clang++ $(if $(IA_is_ia32),-m32,-m64)

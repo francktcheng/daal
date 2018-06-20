@@ -43,7 +43,11 @@
 #include <cstring> 
 #include <sstream>
 #include <iostream>
+
+#ifdef USE_OMP
 #include <omp.h>
+#endif
+
 #include <vector>
 #include <string>
 #include <algorithm>

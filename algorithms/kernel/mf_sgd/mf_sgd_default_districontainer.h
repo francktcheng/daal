@@ -36,8 +36,10 @@
 #include "service_micro_table.h"
 #include "service_numeric_table.h"
 
-
+#ifdef USE_OMP
 #include <omp.h>
+#endif
+
 #include "mf_sgd_types.h"
 #include "mf_sgd_distri.h"
 #include "mf_sgd_default_kernel.h"

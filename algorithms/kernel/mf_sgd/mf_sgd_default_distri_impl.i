@@ -33,7 +33,11 @@
 #include <cstdio> 
 #include <algorithm>
 #include <ctime>        
+
+#ifdef USE_OMP
 #include <omp.h>
+#endif
+
 #include <immintrin.h>
 
 #include "service_lapack.h"

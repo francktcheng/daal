@@ -28,7 +28,11 @@
 #include <cstdio> 
 #include <assert.h>
 #include <random>
+
+#ifdef USE_OMP
 #include <omp.h>
+#endif
+
 #include <stdio.h>
 #include <string.h>
 

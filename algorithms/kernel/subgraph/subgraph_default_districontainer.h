@@ -36,7 +36,10 @@
 #include "service_numeric_table.h"
 
 
+#ifdef USE_OMP
 #include <omp.h>
+#endif
+
 #include "subgraph_types.h"
 #include "subgraph_distri.h"
 #include "subgraph_default_kernel.h"

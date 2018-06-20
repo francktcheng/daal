@@ -35,7 +35,11 @@
 #include <cstdio> 
 #include <algorithm>
 #include <ctime>        
+
+#ifdef USE_OMP
 #include <omp.h>
+#endif
+
 #include <immintrin.h>
 #include <stdlib.h>
 #include <cmath>
