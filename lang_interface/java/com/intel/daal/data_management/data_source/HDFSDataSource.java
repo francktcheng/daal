@@ -85,7 +85,10 @@ public class HDFSDataSource extends DataSource {
         }
     }
 
+    public void DetachSourceThd() { cDetachSourceThd(); }
+
     protected native long cInit(String filename);
+    protected native void cDetachSourceThd();
 
     private native long cGetFeatureManager(long cObject);
 }

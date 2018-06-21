@@ -184,8 +184,8 @@ TBBDIR.soia    := $(TBBDIR)$(if $(OS_is_win),/../redist,/lib)$(if $(OS_is_mac),,
 ## harp thrid party is not included at release dir
 HDFSDIR := $(DIR)/externals/hdfs
 HDFSDIR.include := $(HDFSDIR)/include
-HDFSDIR.libia := $(HDFSDIR)/lib
-HDFSDIR.soia := $(HDFSDIR)/lib
+HDFSDIR.libia := $(HDFSDIR)/lib$(if $(OS_is_mac),mac,)
+HDFSDIR.soia := $(HDFSDIR)/lib$(if $(OS_is_mac),mac,)
 MEMKINDDIR := $(DIR)/externals/memkind
 MEMKINDDIR.include := $(MEMKINDDIR)/include
 MEMKINDDIR.libia := $(MEMKINDDIR)/lib
@@ -261,16 +261,19 @@ daaldep.mac32e.mkl.seq := $(MKLFPKDIR.libia)/$(plib)daal_mkl_sequential.$a
 daaldep.mac32e.mkl := $(MKLFPKDIR.libia)/$(plib)daal_vmlipp_core.$a
 daaldep.mac32e.vml := 
 daaldep.mac32e.ipp := 
-daaldep.mac32e.rt.thr := -L$(TBBDIR.libia) -ltbb -ltbbmalloc $(daaldep.mac32e.rt.$(COMPILER))
-daaldep.mac32e.rt.seq := $(daaldep.mac32e.rt.$(COMPILER))
+# added by harpdaal hdfs and memkind
+daaldep.mac32e.rt.thr := -L$(TBBDIR.libia) -ltbb -ltbbmalloc -L$(HDFSDIR.libia) -lhdfs -L$(MEMKINDDIR.libia) -lmemkind $(daaldep.mac32e.rt.$(COMPILER))
+daaldep.mac32e.rt.seq := -L$(HDFSDIR.libia) -lhdfs -L$(MEMKINDDIR.libia) -lmemkind $(daaldep.mac32e.rt.$(COMPILER))
 
 daaldep.mac32.mkl.thr := $(MKLFPKDIR.libia)/$(plib)daal_mkl_thread.$a    
 daaldep.mac32.mkl.seq := $(MKLFPKDIR.libia)/$(plib)daal_mkl_sequential.$a
 daaldep.mac32.mkl := $(MKLFPKDIR.libia)/$(plib)daal_vmlipp_core.$a
 daaldep.mac32.vml := 
 daaldep.mac32.ipp :=
-daaldep.mac32.rt.thr := -L$(TBBDIR.libia) -ltbb -ltbbmalloc $(daaldep.mac32.rt.$(COMPILER))
-daaldep.mac32.rt.seq := $(daaldep.mac32.rt.$(COMPILER))
+
+# added by harpdaal hdfs and memkind
+daaldep.mac32.rt.thr := -L$(TBBDIR.libia) -ltbb -ltbbmalloc -L$(HDFSDIR.libia) -lhdfs -L$(MEMKINDDIR.libia) -lmemkind $(daaldep.mac32.rt.$(COMPILER))
+daaldep.mac32.rt.seq := -L$(HDFSDIR.libia) -lhdfs -L$(MEMKINDDIR.libia) -lmemkind $(daaldep.mac32.rt.$(COMPILER))
 
 daaldep.mkl.thr := $(daaldep.$(PLAT).mkl.thr)
 daaldep.mkl.seq := $(daaldep.$(PLAT).mkl.seq)

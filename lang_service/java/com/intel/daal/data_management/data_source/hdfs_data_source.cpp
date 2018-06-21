@@ -40,6 +40,7 @@
 *******************************************************************************/
 
 #include "JHDFSDataSource.h"
+#include <jni.h>
 
 #include "hdfs_data_source.h"
 #include "csv_feature_manager.h"
@@ -72,6 +73,23 @@ JNIEXPORT jlong JNICALL Java_com_intel_daal_data_1management_data_1source_HDFSDa
     }
 
     return(jlong)(ds);
+}
+
+JNIEXPORT void JNICALL Java_com_intel_daal_data_1management_data_1source_HDFSDataSource_cDetachSourceThd
+(JNIEnv *env, jobject obj)
+{
+    // detach jni thread from JVM
+    JavaVM *vm;
+    jint ret;
+    ret = env->GetJavaVM(&vm);
+    if (ret) {
+        fprintf(stderr, "hdfsThreadDestructor: GetJavaVM failed with "
+                "error %d\n", ret);
+        env->ExceptionDescribe();
+    } else {
+        vm->DetachCurrentThread();
+    }
+
 }
 
 /*
